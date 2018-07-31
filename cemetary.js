@@ -33,28 +33,36 @@ function draw() {
    }
    boo.move(); boo.display();
 }
+
+//draw ghost
 function ghost(){
-  this.x = -100;
+  this.x = -150;
   this.y = 200;
-  this.diameter = random(50, 70);
+  this.diameter = random(45, 65);
   this.speed = 1;
   var op = 63;
 
+  //follow the mouse
   this.move = function(){
-      // if(mouseX >= this.x && mouseY <= this.y){ this.x++; this.y--;}
-      // if(mouseX >= this.x && mouseY >= this.y){ this.x++; this.y++;}
-      // if(mouseX <= this.x && mouseY >= this.y){ this.x--; this.y++;}
-      // if(mouseY <= this.x && mouseY <= this.y){ this.x--; this.y--;}
-      if(mouseX >= this.x){ this.x++; }
-      if(mouseX <= this.x){ this.x--;}
-      if(mouseY >= this.y){ this.y++;}
-      if(mouseY <= this.y){ this.y--;}
+      if(mouseX > this.x && mouseY > this.y){ this.x++; this.y++;}
+      if(mouseX < this.x && mouseY > this.y){ this.x--; this.y++;}
+      if(mouseX < this.x && mouseY < this.y){ this.x--; this.y--;}
+      if(mouseX > this.x && mouseY < this.y){ this.x++; this.y--;}
   }
   this.display = function(){
 
     fill(240,op);
     ellipse(this.x, this.y, this.diameter, this.diameter);
-    rect(this.x - this.diameter/2, this.y + this.diameter/2, this.diameter, this.y);
+    rect(this.x - this.diameter/2, this.y + this.diameter/2, this.diameter, this.y * .5);
+
+    quad(this.x - this.diameter/2, this.y + 12,
+        this.x - 8, this.y + this.diameter/2,
+        this.x - this.diameter/2, this.y + this.diameter/2);
+
+    quad(this.x + this.diameter/2, this.y + 12,
+        this.x + 8, this.y + this.diameter/2,
+        this.x + this.diameter/2, this.y + this.diameter/2);
+
     if(keyIsDown(LEFT_ARROW) || keyIsDown(RIGHT_ARROW)) op--;
     else if(op < 63) op += .5;
   }
@@ -101,7 +109,7 @@ function flower(){
 
 }
 
-// Gate class
+// Grave class
 function Graves() {
   this.x = 30;
   this.y = 130;
