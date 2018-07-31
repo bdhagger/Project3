@@ -44,10 +44,15 @@ function ghost(){
 
   //follow the mouse
   this.move = function(){
-      if(mouseX > this.x && mouseY > this.y){ this.x++; this.y++;}
-      if(mouseX < this.x && mouseY > this.y){ this.x--; this.y++;}
-      if(mouseX < this.x && mouseY < this.y){ this.x--; this.y--;}
-      if(mouseX > this.x && mouseY < this.y){ this.x++; this.y--;}
+    if(mouseX > this.x && mouseY > this.y){ this.x++; this.y++;}
+    if(mouseX < this.x && mouseY > this.y){ this.x--; this.y++;}
+    if(mouseX < this.x && mouseY < this.y){ this.x--; this.y--;}
+    if(mouseX > this.x && mouseY < this.y){ this.x++; this.y--;}
+    if(mouseX == this.x && mouseY < this.y){ this.y--;}
+    if(mouseX == this.x && mouseY > this.y){ this.y++;}
+    if(mouseX > this.x && mouseY == this.y){ this.x++;}
+    if(mouseX < this.x && mouseY == this.y){ this.x--;}
+
   }
   this.display = function(){
 
